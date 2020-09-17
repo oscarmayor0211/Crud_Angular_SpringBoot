@@ -1,0 +1,27 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id Market</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let market of markets">
+            <td>{{ market.id_market }}</td>
+            <td>{{ market.name }}</td>
+
+            <td>
+                <button class="btn btn-primary" (click)="llenarForm(market)">
+          <i class="fa fa-edit"></i>
+        </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteMarkt(market.id_market)">
+          <i class="fa fa-trash-o"></i>
+        </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

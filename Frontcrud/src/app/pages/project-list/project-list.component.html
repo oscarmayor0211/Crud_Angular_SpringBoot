@@ -1,0 +1,36 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id Project</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Company</th>
+            <th>Service</th>
+            <th>Market</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <tr *ngFor="let proj of projects">
+            <td>{{ proj.id_project }}</td>
+            <td>{{ proj.name }}</td>
+            <td>{{ proj.description }}</td>
+            <td>{{ proj.id_company.name }}</td>
+            <td>{{ proj.id_service.name }}</td>
+            <td>{{ proj.id_market.name}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="llenarForm(proj)">
+          <i class="fa fa-edit"></i>
+        </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteProject(proj.id_project)">
+          <i class="fa fa-trash-o"></i>
+        </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

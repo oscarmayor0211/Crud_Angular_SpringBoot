@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 p-3">
+            <form autocomplete="off" [formGroup]="form" (ngSubmit)="createMarket()">
+                <h4>Crear Market</h4>
+                <hr />
+
+                <div class="form-group row">
+                    <div class="col-10">
+                        <input class="form-control" type="hidden" formControlName="id_market" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="name" placeholder="Name Market" [class.is-invalid]="NameInvalid" />
+                        <small *ngIf="NameInvalid" class="text-danger">Ingrese el nombre</small
+            >
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-2 col-form-label">&nbsp;</label>
+          <div class="input-group col-md-10">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+              Guardar
+            </button>
+
+            <button (click)="cancel()" class="btn btn-outline-danger btn-block">
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-7">
+      <div class="card">
+        <h2 class="card-header text-center">Lista de Market</h2>
+        <p class="card-text">
+          <app-market-list
+            [markets]="market"
+            (deleteMarket)="handleDeleteMarkt($event)"
+            (editMarket)="handleEditMarkt($event)"
+          ></app-market-list>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

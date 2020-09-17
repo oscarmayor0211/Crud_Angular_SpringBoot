@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 p-3">
+            <form autocomplete="off" [formGroup]="forma" (ngSubmit)="createProject()">
+                <h4>Crear Proyecto</h4>
+                <hr />
+
+                <div class="form-group row">
+                    <div class="col-10">
+                        <input class="form-control" type="hidden" formControlName="id_project" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Name</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="name" placeholder="Name Project" [class.is-invalid]="NameInvalid" />
+                        <small *ngIf="NameInvalid" class="text-danger">Ingrese el nombre</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Description</label>
+          <div class="col-10">
+            <input
+              class="form-control"
+              type="text"
+              formControlName="description"
+              placeholder="Description"
+              [class.is-invalid]="DescriptionInvalid"
+            />
+            <small *ngIf="DescriptionInvalid" class="text-danger"
+              >Ingrese una descripcion</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Company</label>
+          <div class="col-10">
+            <select
+              class="custom-select"
+              formControlName="id_company"
+              aria-label="Example select with button addon"
+              [class.is-invalid]="CompanyInvalid"
+            >
+              <option value="null" selected disabled>
+                Seleccione una compañia
+              </option>
+              <option *ngFor="let com of company" value="{{ com.id_company }}">
+                {{ com.name }}
+              </option>
+            </select>
+            <small *ngIf="CompanyInvalid" class="text-danger"
+              >Seleccione una compañia</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Service</label>
+          <div class="col-10">
+            <select
+              class="custom-select"
+              formControlName="id_service"
+              aria-label="Example select with button addon"
+              [class.is-invalid]="ServiceInvalid"
+            >
+              <option value="null" disabled selected>
+                Seleccione un servicio
+              </option>
+              <option *ngFor="let ser of service" value="{{ ser.id_service }}">
+                {{ ser.name }}
+              </option>
+            </select>
+            <small *ngIf="ServiceInvalid" class="text-danger"
+              >Seleccione un servicio</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-2 col-form-label">Market</label>
+          <div class="col-10">
+            <select
+              class="custom-select"
+              formControlName="id_market"
+              aria-label="Example select with button addon"
+              [class.is-invalid]="MarketInvalid"
+            >
+              <option value="null" disabled selected>
+                Seleccione una tienda
+              </option>
+              <option *ngFor="let mark of market" value="{{ mark.id_market }}">
+                {{ mark.name }}
+              </option>
+            </select>
+            <small *ngIf="MarketInvalid" class="text-danger"
+              >Seleccione una Tienda</small
+            >
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-2 col-form-label">&nbsp;</label>
+          <div class="input-group col-md-10">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </form>
+      <button
+        type="button"
+        routerLink="/projects/crearmarket"
+        class="btn btn-primary float-right"
+      >
+        Crear Market
+      </button>
+      <button
+        type="button"
+        routerLink="/projects/crearservice"
+        class="btn btn-primary float-right mr-2"
+      >
+        Crear Service
+      </button>
+      <button
+        type="button"
+        routerLink="/projects/crearcompany"
+        class="btn btn-primary float-right mr-2"
+      >
+        Crear Company
+      </button>
+    </div>
+    <div class="col-md-7">
+      <div class="card">
+        <h2 class="card-header text-center">Lista de Proyectos</h2>
+        <p class="card-text">
+          <app-project-list
+            [projects]="pro"
+            (editProject)="handleEditProject($event)"
+            (deletProject)="handleDeleteProject($event)"
+          ></app-project-list>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
